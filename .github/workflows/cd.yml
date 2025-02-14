@@ -8,6 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
@@ -15,8 +18,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: $ {{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/fastapi-book-project
-            git pull origin main
+            cd /home/ubuntu/
+            cd fastapi-book-project
+            git fetch origin main
             source venv/bin/activate
             pip install -r requirements.txt
             sudo systemctl restart fastapi
