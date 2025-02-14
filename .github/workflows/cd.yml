@@ -18,9 +18,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: $ {{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/
-            cd fastapi-book-project
-            git fetch origin main
+            cd /home/ubuntu/fastapi-book-project
+            git pull origin main
             source venv/bin/activate
             pip install -r requirements.txt
             sudo systemctl restart fastapi
